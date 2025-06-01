@@ -1,0 +1,16 @@
+# robots.txt para Sistema de Donaciones de Alimentos
+
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /styles/
+Allow: /js/
+Allow: /images/
+
+# No permitir acceso a rutas de API
+Disallow: /api/
+Disallow: /backend/
+Disallow: /ai/
+
+# Sitemap
+Sitemap: https://tudominio.com/sitemap.xml 

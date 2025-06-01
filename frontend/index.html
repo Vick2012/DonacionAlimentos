@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Donaciones de Alimentos</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <i class="fas fa-hands-helping"></i>
+                <h1>Sistema de Donaciones</h1>
+            </div>
+            <div class="nav-links">
+                <span id="userGreeting" class="user-greeting"
+                    style="font-weight:bold;font-size:1.1em;margin-right:16px;display:none;"></span>
+                <button id="logoutBtn" class="btn btn-danger" style="display:none;margin-right:16px;">Cerrar sesión</button>
+                <a href="#donar" class="nav-link">Donar</a>
+                <a href="#ayuda" class="nav-link">Ayuda</a>
+                <button id="loginBtn" class="btn btn-primary">Iniciar Sesión</button>
+                <button id="registerBtn" class="btn btn-secondary">Registrarse</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h2>Donar Alimentos, Crear Esperanza</h2>
+                <p>Conectamos donantes con organizaciones que ayudan a quienes más lo necesitan</p>
+                <button id="donateBtn" class="btn btn-large">Donar Ahora</button>
+            </div>
+        </section>
+
+        <section id="donation-form" class="section hidden">
+            <div class="container">
+                <h2>Registrar Donación</h2>
+                <form id="donationForm" class="form">
+                    <div class="form-group">
+                        <label for="foodType">Tipo de Alimento</label>
+                        <select id="foodType" name="foodType" required>
+                            <option value="">Seleccione un tipo</option>
+                            <option value="frutas">Frutas</option>
+                            <option value="verduras">Verduras</option>
+                            <option value="lacteos">Lácteos</option>
+                            <option value="carnes">Carnes</option>
+                            <option value="granos">Granos</option>
+                            <option value="otros">Otros</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Cantidad</label>
+                        <div class="quantity-input">
+                            <input type="number" id="quantity" name="quantity" min="0" step="0.1" required>
+                            <select id="unit" name="unit" required>
+                                <option value="kg">kg</option>
+                                <option value="g">g</option>
+                                <option value="l">l</option>
+                                <option value="ml">ml</option>
+                                <option value="unidad">unidad</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="expirationDate">Fecha de Vencimiento</label>
+                        <input type="date" id="expirationDate" name="expirationDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="storageConditions">Condiciones de Almacenamiento</label>
+                        <select id="storageConditions" name="storageConditions" required>
+                            <option value="">Seleccione una opción</option>
+                            <option value="refrigerado">Refrigerado</option>
+                            <option value="congelado">Congelado</option>
+                            <option value="ambiente">Ambiente</option>
+                            <option value="especial">Especial</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Ubicación</label>
+                        <input type="text" id="location" name="location" placeholder="Ingrese su dirección" required>
+                        <div id="map" class="map">
+                            <div class="map-container"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Notas Adicionales</label>
+                        <textarea id="notes" name="notes" rows="3"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Registrar Donación</button>
+                        <button type="button" class="btn btn-secondary" id="cancelBtn">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section id="ai-assistant" class="ai-assistant">
+            <button id="aiAssistantBtn" class="ai-assistant-btn">
+                <i class="fas fa-robot"></i>
+                <span>¿Necesitas ayuda?</span>
+            </button>
+            <div id="aiChat" class="ai-chat hidden">
+                <div class="ai-chat-header">
+                    <h3>Asistente IA</h3>
+                    <button id="closeChatBtn" class="btn-icon">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div id="chatMessages" class="chat-messages"></div>
+                <div class="chat-input">
+                    <input type="text" id="userInput" placeholder="Escribe tu pregunta...">
+                    <button id="sendMessageBtn" class="btn-icon">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-envelope"></i> info@donaciones.org</p>
+                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <a href="#about">Sobre Nosotros</a>
+                    <a href="#faq">Preguntas Frecuentes</a>
+                    <a href="#privacy">Política de Privacidad</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Síguenos</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Sistema de Donaciones de Alimentos. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modales -->
+    <div id="loginModal" class="modal hidden">
+        <div class="modal-content">
+            <button type="button" class="btn-close" id="closeLoginModalBtn">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2>Iniciar Sesión</h2>
+            <form id="loginForm" class="form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Ingresar</button>
+                    <button type="button" class="btn btn-secondary" id="closeLoginBtn">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="registerModal" class="modal hidden">
+        <div class="modal-content">
+            <button type="button" class="btn-close" id="closeRegisterModalBtn">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2>Registrarse</h2>
+            <form id="registerForm" class="form">
+                <div class="form-group">
+                    <label for="regName">Nombre</label>
+                    <input type="text" id="regName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">Email</label>
+                    <input type="email" id="regEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Contraseña</label>
+                    <input type="password" id="regPassword" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPhone">Teléfono</label>
+                    <input type="text" id="regPhone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="regStreet">Dirección</label>
+                    <input type="text" id="regStreet" name="street" required>
+                </div>
+                <div class="form-group">
+                    <label for="regCity">Ciudad</label>
+                    <input type="text" id="regCity" name="city" required>
+                </div>
+                <div class="form-group">
+                    <label for="regState">Barrio</label>
+                    <input type="text" id="regState" name="state" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Registrarse</button>
+                    <button type="button" class="btn btn-secondary" id="closeRegisterBtn">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/donate.js"></script>
+    <script src="js/assistant.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const registerForm = document.getElementById('registerForm');
+            if (registerForm) {
+                registerForm.addEventListener('submit', async (event) => {
+                    event.preventDefault();
+                    console.log('¡Enviando registro!');
+
+                    const formData = new FormData(registerForm);
+                    const data = {
+                        name: formData.get('name'),
+                        email: formData.get('email'),
+                        password: formData.get('password'),
+                        phone: formData.get('phone'),
+                        address: {
+                            street: formData.get('street'),
+                            city: formData.get('city'),
+                            state: formData.get('state'),
+                            // Por ahora, coordenadas por defecto (se pueden actualizar después)
+                            coordinates: {
+                                type: 'Point',
+                                coordinates: [0, 0] // [longitud, latitud]
+                            }
+                        },
+                        role: 'donor', // Rol por defecto
+                        preferences: {
+                            notifications: {
+                                email: true,
+                                sms: false
+                            },
+                            donationRadius: 10
+                        }
+                    };
+
+                    try {
+                        const response = await fetch('http://localhost:3000/api/users/register', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            },
+                            body: JSON.stringify(data)
+                        });
+
+                        if (!response.ok) {
+                            const errorData = await response.json();
+                            throw new Error(errorData.error || 'Error al registrar usuario');
+                        }
+
+                        const result = await response.json();
+                        console.log('Usuario registrado exitosamente:', result);
+
+                        // Cerrar el modal y mostrar mensaje de éxito
+                        const registerModal = document.getElementById('registerModal');
+                        registerModal.classList.add('hidden');
+                        alert('¡Registro exitoso! Por favor inicia sesión.');
+
+                    } catch (error) {
+                        console.error('Error al registrar:', error);
+                        alert(error.message || 'Error al registrar usuario. Por favor intenta de nuevo.');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+# Requisitos del Sistema
+node>=18.0.0
+npm>=9.0.0
+mongodb>=6.0.0
+
+# Dependencias del Sistema
+python>=3.8.0  # Para servicios de IA
+tensorflow>=2.12.0  # Para el modelo de IA
+numpy>=1.21.0  # Para procesamiento numérico
+scikit-learn>=1.0.0  # Para análisis de datos
+
+# Herramientas de Desarrollo
+git>=2.30.0
+curl>=7.68.0
+wget>=1.20.0
+
+# Servicios Externos Requeridos
+# Mapbox API Token (requerido para mapas)
+# MongoDB Atlas o MongoDB local
+# Servicio de correo electrónico (para notificaciones)
+
+# Notas de Instalación:
+# 1. Instalar Node.js y npm desde https://nodejs.org/
+# 2. Instalar MongoDB desde https://www.mongodb.com/try/download/community
+# 3. Instalar Python y dependencias de IA:
+#    pip install tensorflow numpy scikit-learn
+# 4. Configurar variables de entorno en .env
+# 5. Obtener token de Mapbox en https://www.mapbox.com/
+
+# Versiones mínimas recomendadas para desarrollo
+# Node.js: 18.x LTS
+# MongoDB: 6.0
+# Python: 3.8
+# TensorFlow: 2.12.0 
